@@ -21,6 +21,8 @@ export class PricingpageComponent implements OnInit {
   constructor(@Inject(DOCUMENT) public document: Document,public UsersRestApi: UsersService, private http: HttpClient,public ArtWorksService: AllartworksService,public blopService: BlobService, public FilesRestApi: FilesService) {
     this.getUser();
     this.loadFiles();
+    this.getAccessToken();
+
   }
 
   focus;
@@ -29,7 +31,7 @@ export class PricingpageComponent implements OnInit {
   focus3;
   focus4;
 
-
+  access_token: any;
   isCollapsed = true;
   fileToUpload: File = null;
   user: String;
@@ -113,8 +115,13 @@ export class PricingpageComponent implements OnInit {
     }
   }
 
+  getAccessToken() {
+    this.access_token = localStorage.getItem('access_token');
+  }
   logout(){
     localStorage.removeItem('profile');
+    localStorage.removeItem('access_token');
+
   }
 
   addToCart(item) {
@@ -123,7 +130,7 @@ export class PricingpageComponent implements OnInit {
   }
 
   goToUrl(id): void {
-    let url = 'https://sanaa.adiy.site/' + this.profile + '/' + id ;
+    let url = 'https://sanaa.adiy.site/' + this.profile + '/' + id + '?token=' + this.access_token ;
     window.open(url,"_blank")
   }
   loadAllArtWorks() {

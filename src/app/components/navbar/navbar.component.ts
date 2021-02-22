@@ -34,6 +34,8 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('profile');
+    localStorage.removeItem('access_token');
+
   }
 
   loadAllUsers() {

@@ -65,6 +65,8 @@ import { AllTemplatesComponent } from './examples/all-templates/all-templates.co
 import { DataTablesModule } from 'angular-datatables';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { JwtModule } from '@auth0/angular-jwt';
+
 
 
 //I keep the new line
@@ -112,6 +114,7 @@ import { environment } from '../environments/environment';
 		RouterModule,
         BrowserAnimationsModule,
         AppRoutingModule,
+		JwtModule,
         NgxTypeaheadModule,
         //NotificationService,
         BsDropdownModule.forRoot(),

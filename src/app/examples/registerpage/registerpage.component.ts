@@ -127,6 +127,7 @@ signIn() {
         this._cookieService.put('email', data.email);
         this._cookieService.put('password', data.password);
         this._cookieService.put('remember', this.Formdata.remember);
+          localStorage.setItem('access_token', data.token);
 
         // this.setLoggedIn(true);
         // tslint:disable-next-line:triple-equals

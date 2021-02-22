@@ -24,7 +24,7 @@
     "@angular/pwa": "^0.1100.5",
     "@angular/router": "8.2.10",
     "@angular/service-worker": "8.2.10",
-    "@auth0/angular-jwt": "^5.0.1",
+    "@auth0/angular-jwt": "^5.0.2",
     "@glidejs/glide": "3.4.1",
     "@ng-bootstrap/ng-bootstrap": "^5.3.1",
     "@types/hammerjs": "^2.0.36",

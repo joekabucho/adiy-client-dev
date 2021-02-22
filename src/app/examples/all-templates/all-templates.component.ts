@@ -30,6 +30,7 @@ export class AllTemplatesComponent implements OnInit {
   constructor(@Inject(DOCUMENT) public document: Document,public UsersRestApi: UsersService, private http: HttpClient,public ArtWorksService: AllartworksService,public blopService: BlobService, public FilesRestApi: FilesService) {
     this.getUser();
     this.loadFiles();
+    this.getAccessToken();
   }
 
   focus;
@@ -50,6 +51,7 @@ export class AllTemplatesComponent implements OnInit {
   file: any;
   users: any;
   profile: any;
+  access_token: any;
 
   products: any;
 
@@ -103,6 +105,9 @@ export class AllTemplatesComponent implements OnInit {
   getUser() {
     this.profile = localStorage.getItem('profile');
   }
+  getAccessToken() {
+    this.access_token = localStorage.getItem('access_token');
+  }
 
   loadProfile() {
     return this.UsersRestApi.GetUserss().subscribe(data => {
@@ -139,7 +144,7 @@ export class AllTemplatesComponent implements OnInit {
   }
 
   goToUrl(id): void {
-    let url = 'https://sanaa.adiy.site/' + this.profile + '/' + id ;
+    let url = 'https://sanaa.adiy.site/' + this.profile + '/' + id + '?token=' + this.access_token ;
     window.open(url,"_blank")
   }
   // Delete employee
@@ -156,6 +161,8 @@ export class AllTemplatesComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('profile');
+    localStorage.removeItem('access_token');
+
   }
 
   addToCart(item) {

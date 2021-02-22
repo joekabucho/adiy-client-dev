@@ -31,6 +31,8 @@ export class EcommerceComponent implements OnInit, OnDestroy {
       this.getAllUsers();
      this.loadFiles();
      this.getSelected();
+      this.getAccessToken();
+
 
   }
 
@@ -40,6 +42,7 @@ export class EcommerceComponent implements OnInit, OnDestroy {
   selected_count = 0;
   stringifiedData: any;
   Allartworks: any = [];
+    access_token: any;
 
 
     AllBlobs: any = [];
@@ -178,6 +181,9 @@ export class EcommerceComponent implements OnInit, OnDestroy {
         });
     }
 
+    getAccessToken() {
+        this.access_token = localStorage.getItem('access_token');
+    }
     selectedTempStatic(item) {
         this.search2 = item.filename;
         console.log(item.filename);
@@ -189,7 +195,7 @@ export class EcommerceComponent implements OnInit, OnDestroy {
   }
 
     goToUrl(id): void {
-        let url = 'https://sanaa.adiy.site/' + this.profile + '/' + id ;
+        let url = 'https://sanaa.adiy.site/' + this.profile + '/' + id + '?token=' + this.access_token ;
         window.open(url,"_blank")
     }
   loadmore() {
@@ -297,6 +303,8 @@ export class EcommerceComponent implements OnInit, OnDestroy {
 
     logout(){
         localStorage.removeItem('profile');
+        localStorage.removeItem('access_token');
+
     }
 
 
