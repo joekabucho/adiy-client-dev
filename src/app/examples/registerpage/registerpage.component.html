@@ -1,0 +1,229 @@
+
+<div class="wrapper">
+  <div class="page-header bg-default">
+    <div
+      class="page-header-image"
+      style="background-image: url('assets/img/brand/login.gif');"
+    ></div>
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form action="javascript:;">
+          <h2>Create Account</h2>
+          <!-- <div class="social-container">
+            <button class="btn btn-facebook btn-sm" type="button">
+              <span class="btn-inner--icon">
+                <i class="fab fa-facebook"> </i>
+              </span>
+            </button>
+            <button class="btn-instagram btn btn-sm" type="button">
+              <span class="btn-inner--icon">
+                <i class="fab fa-instagram"> </i>
+              </span>
+            </button>
+            <button class="btn btn-twitter btn-sm" type="button">
+              <span class="btn-inner--icon">
+                <i class="fab fa-twitter"> </i>
+              </span>
+            </button>
+          </div>
+          <span class="text-default mb-4">
+            or use your email for registration
+          </span> -->
+          <div class="form-group mb-3"  [ngClass]="{ 'focused': focus === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-circle-08"> </i>
+                </span>
+              </div>
+              <input 
+               [(ngModel)]="sname"
+               [ngModelOptions]="{standalone: true}"
+               class="form-control"
+               placeholder="Name" 
+               type="text" (blur)="focus = false"
+               (focus)="focus = true" />
+            </div>
+          </div>
+          <div class="form-group mb-3"  [ngClass]="{ 'focused': focus1 === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-email-83"> </i>
+                </span>
+              </div>
+              <input
+                [(ngModel)]="semail"
+                [ngModelOptions]="{standalone: true}"
+                class="form-control"
+                placeholder="Email" (blur)="focus1 = false" (focus)="focus1 = true"
+                type="email"
+              />
+            </div>
+          </div>
+          <div class="form-group mb-3"  [ngClass]="{ 'focused': focus1 === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-lock-circle-open"> </i>
+                </span>
+              </div>
+              <input
+                      [(ngModel)]="spassword"
+                      [ngModelOptions]="{standalone: true}"
+                      class="form-control"
+                      placeholder="Password" (blur)="focus1 = false" (focus)="focus1 = true"
+                      type="password"
+              />
+            </div>
+          </div>
+          <!-- <input
+          [ngClass]="{'focused': focus5 === true }"
+          style="display: none;"
+          id="code"
+          [(ngModel)]="scode"
+          [ngModelOptions]="{standalone: true}"
+          class="form-control"
+          placeholder="Code" (blur)="focus2 = false" (focus)="focus2 = true"
+          type="number"
+        /> -->
+         
+          <div class="form-group"
+          id="code"
+          [ngClass]="{'focused': focus5 === true }"
+          style="display: none;">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-lock-circle-open"> </i>
+                </span>
+              </div>
+              <input
+                [(ngModel)]="scode"
+                [ngModelOptions]="{standalone: true}"
+                class="form-control"
+                placeholder="Code" (blur)="focus5 = false" (focus)="focus5 = true"
+                type="number"
+              />
+            </div>
+          </div>
+
+          <p routerLink="/about-us" > Read Adiy's  terms and conditions</p>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1" required="this is required;">
+            <label class="custom-control-label" for="customCheck1" >I accept these terms and conditions</label>
+          </div>
+          
+           <div style="display: none;" id="sger">
+             <span style="color: red;">
+                The user already exists.
+             </span>
+           </div>
+           <ng-template [ngIf]="snotification"><p style="color: red;">Ensure you dont have empty fields.</p></ng-template>
+           <ng-template [ngIf]="swrongdetails"><p style="color: orange;">Enter a valid email</p></ng-template>
+
+          <button class="btn btn-dark" id="verify" (click)="verify()">Verify</button>
+          <button class="btn btn-dark" id="signup" style="display: none;" (click)="signUp()">Sign Up</button>
+        </form>
+      </div>
+
+      <div class="form-container sign-in-container" style="">
+        <form action="#" role="form">
+          <h2>Sign in</h2>
+          <!-- <div class="social-container">
+            <button class="btn btn-facebook btn-sm" type="button">
+              <span class="btn-inner--icon">
+                <i class="fab fa-facebook"> </i>
+              </span>
+            </button>
+            <button class="btn-instagram btn btn-sm" type="button">
+              <span class="btn-inner--icon">
+                <i class="fab fa-instagram"> </i>
+              </span>
+            </button>
+            <button class="btn btn-twitter btn-sm" type="button">
+              <span class="btn-inner--icon">
+                <i class="fab fa-twitter"> </i>
+              </span>
+            </button>
+          </div> -->
+          <!-- <span class="text-default mb-4"> or use your account </span> -->
+          <div class="form-group mb-3" [ngClass]="{ 'focused': focus3 === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-email-83"> </i>
+                </span>
+              </div>
+              <input
+                [(ngModel)]="email"
+                [ngModelOptions]="{standalone: true}"
+                class="form-control"
+                placeholder="Email" (blur)="focus3 = false" (focus)="focus3 = true"
+                type="email"
+              />
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'focused': focus4 === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-lock-circle-open"> </i>
+                </span>
+              </div>
+              <input
+                [(ngModel)]="password"
+                [ngModelOptions]="{standalone: true}"
+                class="form-control"
+                placeholder="Password" (blur)="focus4 = false" (focus)="focus4 = true"
+                type="password"
+              />
+            </div>
+          </div>
+
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox"  [(ngModel)]="Formdata.remember"  [ngModelOptions]="{standalone: true}" class="custom-control-input" id="customCheck2" >
+            <label class="custom-control-label" for="customCheck2" >Remember Me</label>
+          </div>
+          <a href="#/reset-page">Forgot your password? </a>
+          <ng-template [ngIf]="notification && !wrongdetails"><p style="color: red;">Enter email and password</p></ng-template>
+          <ng-template [ngIf]="wrongdetails && !notification"><p style="color: orange;">Enter a valid email</p></ng-template>
+          <div style="display: none;" id="lger">
+            <span style="color: red;">
+               Wrong credentials, can't login.
+            </span>
+          </div>
+          <button class="btn btn-dark mt-3" (click)="signIn()">Sign In</button>
+        </form>
+      </div>
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <div style="height: 100px; width: 100%; box-shadow: -1px 3px 15px 0px rgba(0,0,0,0.75); border-radius: 10px;">
+              <h2 class="text-white" style="padding-top: 25px; margin-left: 10; margin-right: 10;">Join us today!</h2>
+            </div>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button class="btn " style="background-color:yellow" id="signIn">
+              Sign In
+            </button>
+          </div>
+
+          <div class="overlay-panel overlay-right">
+            <div style="height: 100px; width: 100%; box-shadow: -1px 3px 15px 0px rgba(0,0,0,0.75); border-radius: 10px;">
+              <h2 class="text-white" style="padding-top: 25px; margin-left: 10; margin-right: 10;">Welcome Back!</h2>
+            </div>
+           
+            <p>Enter your personal details and start the journey with us</p>
+            <button class="btn " style="background-color:yellow" id="signUp">
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

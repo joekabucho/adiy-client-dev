@@ -1,0 +1,162 @@
+<div class="body-container container-fluid">
+    <a class="menu-btn" href="javascript:void(0)">
+        <i class="ion ion-grid"></i>
+    </a>
+    <div class="row justify-content-center">
+        <!--=================== side menu ====================-->
+        <div class="col-lg-2 col-md-3 col-12 menu_block" style="position: sticky">
+
+            <!--logo -->
+            <!--            <div class="logo_box" style="height: 100px;width: 100px">-->
+            <!--                <a>-->
+            <!--                    <img src="../../../assets/img/brand/logo.png" alt="cocoon">-->
+            <!--                </a>-->
+            <!--            </div>-->
+            <!--logo end-->
+
+
+            <div class="side_menu_section">
+
+                <form action="">
+                    <!--                    <i class="fa fa-search" aria-hidden="true" style="color: #ffbf00"></i>-->
+                    <input class="search-bar form-control" placeholder="search" style="color: #000000" type="search" [value]="search2"
+                           ngxTypeahead
+                           [taList]="Files"
+                           [taItemTpl]="myTemp"
+                           (taSelected)="selectedTempStatic($event)">
+                    <ng-template #myTemp let-item>
+                        <div class="item-name">
+                            {{item.result.filename}}
+                        </div>
+                    </ng-template>
+                </form>
+                <hr style="color: white">
+                <ul class="menu_nav">
+                    <hr style="color: white">
+                    <li class="active">
+                        <a [routerLink]="['/all-templates']" style=" text-transform: uppercase;">
+                            <i class="fa fa-picture-o" style="color: #ffbf00" aria-hidden="true"></i>
+                            ALL TEMPLATES
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+
+                        <a [routerLink]="['/ecommerce']" style=" text-transform: uppercase;">
+                            <i class="ni ni-briefcase-24" style="color: #ffbf00"></i>
+                            CORPORATE ACCOUNTS
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/pricing-page']" style=" text-transform: uppercase;">
+                            <i class="ni ni-single-02" style="color: #ffbf00"></i>
+                            PERSONAL TEMPLATES
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/checkout-page']" style=" text-transform: uppercase;">
+                            <i class="ni ni-cart" style="color: #ffbf00"></i>
+                            CHECKOUT
+                        </a>
+
+                    </li>
+                    <li>
+                        <a [routerLink]="['/youtube']" style=" text-transform: uppercase;">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                            TUTORIALS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://chats.adiy.site" style=" text-transform: uppercase;">
+                            <i class="fa fa-comments" aria-hidden="true"></i>
+                            CHAT/SUPPORT
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/register-page']" style=" text-transform: uppercase;" (click)="logout()">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            LOGOUT
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--main menu end -->
+
+            <!--filter menu -->
+            <div class="side_menu_section">
+                <h4 class="side_title">filter by:</h4>
+                <ul  id="filtr-container"  class="filter_nav">
+                    <li  data-filter="*" class="active"><a href="javascript:void(0)"  style=" text-transform: uppercase;" >ALL</a></li>
+                    <li data-filter=".facebook"> <a href="javascript:void(0)" style=" text-transform: uppercase;"><i class="fa fa-facebook" aria-hidden="true"></i>  FACEBOOK</a></li>
+                    <li data-filter=".whatsapp_mobile"><a href="javascript:void(0)" style=" text-transform: uppercase;"><i class="fa fa-whatsapp" aria-hidden="true"></i> WHATSAPP/MOBILE</a></li>
+                    <li data-filter=".youtube"><a href="javascript:void(0)" style=" text-transform: uppercase;"><i class="fa fa-youtube" aria-hidden="true"></i> YOUTUBE</a></li>
+                    <li data-filter=".instagram"><a href="javascript:void(0)" style=" text-transform: uppercase;"><i class="fa fa-instagram" aria-hidden="true"></i>  INSTAGRAM</a></li>
+                    <li data-filter=".twitter"><a href="javascript:void(0)" style=" text-transform: uppercase;"><i class="fa fa-twitter" aria-hidden="true"></i>  TWITTER</a></li>
+                    <li data-filter=".flier_poster"><a href="javascript:void(0)" style=" text-transform: uppercase;"><i class="fa fa-newspaper-o" aria-hidden="true"></i>FLIER/POSTER</a></li>
+                    <li data-filter=".logos"><a href="javascript:void(0)" style=" text-transform: uppercase;"><i class="fa fa-grav" aria-hidden="true"></i> LOGOS</a></li>
+                    <li data-filter=".cards"><a href="javascript:void(0)" style=" text-transform: uppercase;"><i class="fa fa-id-card-o" aria-hidden="true"></i>CARDS</a></li>
+
+                </ul>
+            </div>
+            <!--filter menu end -->
+
+            <!--social and copyright -->
+            <div class="side_menu_bottom">
+                <div class="side_menu_bottom_inner">
+
+                    <div class="copy_right">
+                    </div>
+                </div>
+            </div>
+            <!--social and copyright end -->
+
+        </div>
+        <!--=================== side menu end====================-->
+
+        <!--=================== content body ====================-->
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center" appNoRightClick>
+            <div class="portfolio">
+                <div class="container-fluid">
+                    <!--=================== masaonry portfolio start====================-->
+                    <div class="grid img-container justify-content-center no-gutters">
+                        <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
+                        <div class="col-md-12">
+                            <div class="no-data text-center" *ngIf="Allartworks.length == 0">
+                                <p>There are no files added yet!</p>
+                            </div>
+                            <div class="row">
+                                <section id="photos">
+                                <div  *ngFor="let art of Allartworks">
+                                    <a href="https://sanaa.adiy.site/media/{{art.blob_thumbnail}}" title="{{art.blob_id}}">
+                                        <div class="project_box_one  flier/poster facebook {{art.tags}}">
+                                            <img src="https://sanaa.adiy.site/media/{{art.blob_thumbnail}}" alt="{{art.blob_id}}" />
+
+                                            <div class="product_info">
+                                                <div class="product_info_text">
+                                                    <div class="product_info_text_inner">
+                                                        <i class="ni ni-zoom-split-in"></i>
+                                                        <h4>{{art.name}}</h4>
+                                                        <div class="card-footer" *ngIf="this.isActive == true">
+                                                            <!--
+                                                                                                                                                                              <button class="btn-dark"(click)="addToCart(product)"> Ksh {{product.amount}} </button>-->
+                                                                <button  class="btn btn-lg btn-dark " (click)="goToUrl(art.id)">customise</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                </section>
+                            </div>
+                        </div>
+                        <!--=================== masaonry portfolio end====================-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--=================== content body end ====================-->
+        </div>

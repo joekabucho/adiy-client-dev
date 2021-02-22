@@ -1,0 +1,418 @@
+<div class="wrapper">
+  <br>
+  <br>
+  <br>
+<div id="background-cards-component" class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="background-cards-component-tab">
+  <div class="row">
+    <div class="col-md-6 col-lg-4">
+      <div class="card card-blog card-background" data-animation="zooming">
+        <div class="full-background" style="background-image: url('assets/img/black.jpeg')"></div>
+        <a href="javascript:;">
+          <div class="card-body">
+            <div class="content-bottom">
+              <h6 class="card-category text-white opacity-8">users</h6>
+              <h5 class="card-title">Count:{{users.length}}</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card card-blog card-background" data-animation="zooming">
+      <div class="full-background" style="background-image: url('assets/img/black.jpeg')"></div>
+      <a href="javascript:;">
+        <div class="card-body">
+          <div class="content-bottom">
+            <h6 class="card-category text-white opacity-8">templates</h6>
+            <h5 class="card-title">Count:{{Allartworks.length}}</h5>
+            <h5 class="card-title">Public:{{publicArtworks.length}}</h5>
+            <h5 class="card-title">Assigned:{{Allartworks.length - publicArtworks.length}}</h5>
+
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card card-blog card-background" data-animation="zooming">
+      <div class="full-background" style="background-image: url('assets/img/black.jpeg')"></div>
+      <a href="javascript:;">
+        <div class="card-body">
+          <div class="content-bottom">
+            <h6 class="card-category text-white opacity-8">Subscriptions</h6>
+            <h5 class="card-title">Count:{{subscriptions.length}}</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  </div>
+</div>
+
+    <div class="row">
+      <div class="col-6">
+    <div class="card card-nav-tabs text-center">
+      <div class="card-header card-header-primary">
+        Users
+      </div>
+      <div class="card-body">
+        <div class="container">
+          <div class="table-responsive">
+
+        <!-- Show it when there is no jobcard created -->
+        <div class="no-data text-center" *ngIf="Allusers.length == 0">
+          <p>There is users added yet!</p>
+        </div>
+
+        <div *ngIf="Allusers.length !== 0">
+          <div style="padding-left: 20px; padding-right: 20px;">
+            <table class="table" datatable [dtOptions]="dtOptions">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th scope="col">Name</th>
+                <th scope="col">email</th>
+                <th scope="col">Verification Code</th>
+                <th scope="col">role</th>
+                <th scope="col">department</th>
+                <th scope="col">Account Expiry</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let userss of Allusers; let i=index;">
+                <td>{{i+1}}</td>
+                <td>{{userss.name}}</td>
+                <td>{{userss.email}}
+                <td>{{userss.reset_code}}</td>
+                <td>{{userss.role}}</td>
+                <td>{{userss.department}}</td>
+                <td>{{userss.next_payment_date | date: 'shortDate'}}</td>
+
+                <td>
+
+                  <button type="button" rel="tooltip" class="btn btn-primary btn-icon btn-sm " data-original-title="" title=""    data-target="#modal-form"
+                          (click)="modalform.show();updateUser(userss)">
+                    <span class="edit">Subscription</span>
+                  </button>
+                  <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm " data-original-title="" title="">
+                    <span class="delete" (click)="deleteUsers(userss._id)">Delete</span>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+        <div>
+          <!-- Heading Title -->
+        </div>
+      </div>
+    </div>
+      </div>
+      </div>
+      <div class="col-6">
+<div class="card card-nav-tabs text-center">
+  <div class="card-header card-header-primary">
+    Assigned Files
+  </div>
+  <div class="card-body">
+    <div class="container">
+    <div class="table-responsive">
+
+      <!-- Show it when there is no jobcard created -->
+      <div class="no-data text-center" *ngIf="Allfiles.length == 0">
+        <p>There are no files assigned yet!</p>
+      </div>
+
+      <!-- Jobcard list table, it hides when there is no employee -->
+      <div *ngIf="Allfiles.length !== 0">
+        <div style="padding-left: 20px; padding-right: 20px;">
+          <table class="table align-items-center" datatable [dtOptions]="dtOptions">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th scope="col">Name</th>
+              <th scope="col">url</th>
+              <th scope="col">user</th>
+              <th scope="col">uploaded by</th>
+                <th scope="col">amount</th>
+              <th scope="col">file name</th>
+              <th scope="col">Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let filess of Allfiles; let i=index;">
+              <td>{{i+1}}</td>
+              <td>{{filess.name}}</td>
+              <td>{{filess.url}}</td>
+              <td>{{filess.user}}</td>
+              <td>{{filess.uploadedby}}</td>
+              <td>{{filess.amount}}</td>
+              <td>{{filess.filename}}</td>
+
+              <td>
+
+               <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm " data-original-title="" title="">
+                 <span class="delete" (click)="deleteFiles(filess._id)">Delete</span>
+               </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div
+          aria-hidden="true"
+          aria-labelledby="modal-form"
+          bsModal
+          class="modal fade"
+          #modalform="bs-modal"
+          id="modal-form"
+          role="dialog"
+          tabindex="-1"
+  >
+    <div
+            class="modal-dialog modal-dialog-centered modal-sm"
+            role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal-title-default">
+                User subscriptions
+          </h6>
+          <button
+                  aria-label="Close"
+                  class="close"
+                  data-dismiss="modal"
+                  (click)="modalform.hide()"
+                  type="button"
+          >
+            <span aria-hidden="true"> × </span>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="card bg-secondary shadow border-0 mb-0">
+            <div class="card-header bg-white pb-5">
+              <div class="text-muted text-center mb-3">
+                <small> Extend/Add user subscription</small>
+              </div>
+            <div class="card-body px-lg-5 py-lg-5">
+              <form role="form" [formGroup]="expirationForm">
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="ni ni-email-83"> </i>
+                          </span>
+                    </div>
+                    <input
+                            class="form-control" (blur)="focus = false" (focus)="focus = true"
+                            placeholder="Expiry Date"
+                            name="next_payment_date"
+                            formControlName="next_payment_date"
+
+                            type="datetime-local"
+                    />
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button
+                          class="btn btn-primary my-4"
+                          type="button"
+                          (click)="expirationDate();modalform.hide()"
+                  >
+Assign Expiry date                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section section-cards bg-secondary">
+  <div class="container">
+  </div>
+  <div style="padding-right: 60px; padding-left: 60px;">
+    <div class="form-group">
+      <div class="">
+        <div class="card card-pricing card-background" style="background-image: url('./assets/img/ill/pricing_bg.svg')" data-background="image" style="width: 100%" data-icon="big-icon">
+          <div class="card-header bg-transparent">
+            <h2 class="text-black">Assign Template</h2>
+          </div>
+          <form [formGroup]="assignArtworkForm">
+            <div style="margin-left: 20px; margin-right: 20px">
+              <div class="form-group mb-3"  [ngClass]="{ 'focused': focus === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-circle-08"> </i>
+                </span>
+                  </div>
+
+                  <label style="padding-top: 10px">Artwork: </label >
+                  <select class="form-control" id="type"  name="name" formControlName="type"
+                          type="text" (blur)="focus = false"
+                          (focus)="focus = true"
+                          (change)="changedItem(type)"
+                  >
+                    <option *ngFor="let art of Allartworks" [value]="art.blob_thumbnail" >{{art.data.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group mb-3"  [ngClass]="{ 'focused': focus === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-circle-08"> </i>
+                </span>
+                  </div>
+
+                  <label style="padding-top: 10px">Artwork ID: </label >
+                  <select class="form-control" id="artworkid"  name="name" formControlName="artworkid"
+                          type="text" (blur)="focus = false"  (focus)="focus = true"
+                  >
+                    <option *ngFor="let artid of Allartworks" [value]="artid.id" >{{artid.data.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group mb-3"  [ngClass]="{ 'focused': focus === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-circle-08"> </i>
+                </span>
+                  </div>
+
+                  <label style="padding-top: 10px">Upload For: </label >
+                  <select class="form-control" id="category"  formControlName="user"
+                          type="text" (blur)="focus = false"
+                          (focus)="focus = true"
+                  >
+                    <option *ngFor="let user of users" [value]="user._id">{{user.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group mb-3"  [ngClass]="{ 'focused': focus === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-circle-08"> </i>
+                </span>
+                  </div>
+
+                  <label style="padding-top: 10px">Tag: </label >
+                  <select class="form-control" id="tags"  formControlName="tags"
+                          type="text" (blur)="focus = false"
+                          (focus)="focus = true"
+                          required
+                  >
+                    <option  value="facebook">facebook</option>
+                    <option  value="whatsapp_mobile">whatsapp/mobile</option>
+                    <option  value="youtube">youtube</option>
+                    <option  value="instagram">instagram</option>
+                    <option  value="twitter">twitter</option>
+                    <option  value="flier_poster">flier/poster</option>
+                    <option  value="logos">logos</option>
+                    <option  value="cards">cards</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group mb-3"  [ngClass]="{ 'focused': focus === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="ni ni-circle-08"> </i>
+                </span>
+                  </div>
+                  <input
+                          formControlName="amount"
+                          class="form-control"
+                          placeholder="Amount"
+                          type="text" (blur)="focus = false"
+                          (focus)="focus = true" />
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" id="signup" (click)="submitFile()" style="width: 140px; margin-left: 10%; margin-bottom: 10px;">Assign</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card card-nav-tabs text-center">
+  <div class="card-header card-header-primary">
+    Sanaa Files
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <div class="table-responsive">
+
+        <!-- Show it when there is no jobcard created -->
+        <div class="no-data text-center" *ngIf="Allartworks.length == 0">
+          <p>There are no files in sanaa yet!</p>
+        </div>
+
+        <!-- Jobcard list table, it hides when there is no employee -->
+        <div *ngIf="Allartworks.length !== 0">
+          <div>
+            <table class="table" datatable [dtOptions]="dtOptions">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">user id</th>
+                <th scope="col">size</th>
+                <th scope="col">font</th>
+                <th scope="col">created at</th>
+                <th scope="col">updated at</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let filess of Allartworks; let i=index;">
+                <td>{{i+1}}</td>
+                <td>{{filess.data?.imageLibrary[0]?.name}}</td>
+                <td>{{filess.data?.imageLibrary[0]?.type}}</td>
+                <td>{{filess.data?.imageLibrary[0]?.user_id}}</td>
+                <td>{{filess.data?.imageLibrary[0]?.size}}</td>
+                <td>{{filess.data?.Font}}</td>
+                <td>{{filess.data?.imageLibrary[0]?.created_at| date: 'shortDate'}}</td>
+                <td>{{filess.data?.imageLibrary[0]?.updated_at| date: 'shortDate'}}</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+
+<div class="wrapper">
+  <div class="page-header bg-default">
+    <div
+      class="page-header-image"
+      style="background-image: url('assets/img/ill/reset.svg');"
+    ></div>
+    <div class="container">
+      <div class="col-lg-5 col-md-8 mx-auto">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-header">
+            <img
+              alt="Card image"
+              class="card-img"
+              src="assets/img/ill/bg5-1.svg"
+            />
+
+            <h4 class="card-title text-center">Reset Password</h4>
+          </div>
+          <div class="card-body px-lg-5 py-lg-5">
+            <div class="text-center text-muted mb-4">
+              <small> Enter email address to reset password </small>
+            </div>
+            <form role="form">
+              <div class="form-group mb-3" [ngClass]="{ 'focused': focus === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="ni ni-email-83"> </i>
+                    </span>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="email"
+                    [ngModelOptions]="{standalone: true}"
+                    placeholder="Email"
+                     (blur)="focus = false" 
+                     (focus)="focus = true"
+                    type="email"
+                  />
+                </div>
+              </div>
+
+              <div id="code" style="display: none;" class="form-group mb-3" [ngClass]="{ 'focused': focus1 === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="ni ni-email-83"> </i>
+                    </span>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="code"
+                    [ngModelOptions]="{standalone: true}"
+                    placeholder="Reset Code" (blur)="focus = false" (focus)="focus2 = true"
+                    type="number"
+                  />
+                </div>
+              </div>
+
+              <div id="pass" style="display: none;" class="form-group mb-3" [ngClass]="{ 'focused': focus === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="ni ni-email-83"> </i>
+                    </span>
+                  </div>
+                  <input
+                    class="form-control"
+                    [(ngModel)]="password"
+                    [ngModelOptions]="{standalone: true}"
+                    placeholder="Password" (blur)="focus = false" (focus)="focus = true"
+                    type="password"
+                  />
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button id='resetcodebtn' class="btn btn-primary my-4" (click)="getCode()" type="button">
+                  Get Code
+                </button>
+                <button id="resetbtn" style="display: none;" (click)="resetPassword()" class="btn btn-primary my-4" type="button">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

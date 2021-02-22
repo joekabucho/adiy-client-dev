@@ -1,0 +1,22 @@
+.row{
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.card {
+    /*float: left;*/
+    max-width: 100%;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}
+
+.card > img {
+    margin-bottom: .75rem;
+}
+
+.card-text {
+    font-size: 85%;
+}
