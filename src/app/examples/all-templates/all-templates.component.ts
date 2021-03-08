@@ -144,8 +144,12 @@ export class AllTemplatesComponent implements OnInit {
   }
 
   goToUrl(id): void {
-    let url = 'https://sanaa.adiy.site/' + this.profile + '/' + id + '?token=' + this.access_token ;
-    window.open(url,"_blank")
+    this.getAccessToken();
+    if (this.access_token !== null){
+      let url = 'https://sanaa.adiy.site/' + this.profile + '/' + id + '?token=' + this.access_token ;
+      window.open(url,"_blank")
+    }
+
   }
   // Delete employee
   // tslint:disable-next-line:variable-name

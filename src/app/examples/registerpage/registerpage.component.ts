@@ -43,6 +43,7 @@ export class RegisterpageComponent implements  OnInit, OnDestroy {
 
     url = dev.connect;
     private loggedInStatus = JSON.parse(localStorage.getItem('LoggedIn') || 'false');
+    public access_token: string;
 
 constructor(
             private http: HttpClient, private router: Router,
@@ -127,9 +128,10 @@ signIn() {
         this._cookieService.put('email', data.email);
         this._cookieService.put('password', data.password);
         this._cookieService.put('remember', this.Formdata.remember);
-          localStorage.setItem('access_token', data.token);
+          localStorage.setItem('email', data.email);
+          this.setToken();
 
-        // this.setLoggedIn(true);
+          // this.setLoggedIn(true);
         // tslint:disable-next-line:triple-equals
         if (data.role == 'User') {
               this.router.navigateByUrl('all-templates');
@@ -224,5 +226,14 @@ signUp() {
 
 saveUserDetails(user) {
   localStorage.setItem('profile', user._id.toString());
+}
+
+setToken(){
+   const email = localStorage.getItem('email');
+    this.http.get<any>('https://sanaa.adiy.site/api/auth/make?email=' + email, { responseType: 'text' as 'json'}).subscribe(data => {
+        this.access_token = data;
+        localStorage.setItem('access_token', data);
+    })
+
 }
 }
