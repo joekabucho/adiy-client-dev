@@ -67,7 +67,6 @@ ngOnInit() {
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container')
 
-    this.checkStorage();
 
     signUpButton.addEventListener('click', () => {
       console.log('Clicked signup');
@@ -94,12 +93,6 @@ ngOnDestroy() {
         return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
     }
 
-    checkStorage() {
-        const checkStorage = localStorage.getItem('profile');
-        if (checkStorage) {
-            this.router.navigateByUrl('all-templates');
-        }
-    }
 signIn() {
   if (this.email === undefined || this.password === undefined ||
      this.email === '' || this.password === '' ||

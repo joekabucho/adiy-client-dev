@@ -38,7 +38,7 @@ export class LandingpageComponent implements OnInit, OnDestroy {
   artworkid: String;
   users: any = [];
   profile: any;
-
+  access_token: any;
   url = dev.connect;
   Allusers: any = [];
   Allfiles: any = [];
@@ -167,6 +167,17 @@ export class LandingpageComponent implements OnInit, OnDestroy {
     });
   }
 
+  getAccessToken() {
+    this.access_token = localStorage.getItem('access_token');
+  }
+  goToUrl(): void {
+    this.getAccessToken();
+    if (this.access_token !== null){
+      let url = 'https://sanaa.adiy.site/public?token=' + this.access_token ;
+      window.open(url,"_blank")
+    }
+
+  }
   loadAllArtWorks() {
     let selectedFilter:any = [];
     return this.ArtWorksService.GetFiles().subscribe((data: {}) => {
